@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://85hjqbwpwhmq"]
+
+[ext_resource type="Script" uid="uid://c5nwcv0lfsjvp" path="res://scenes/UI/GameTeamMenu/player_bar_template.gd" id="1_d84sc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxmg0"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_34ayu"]
+font_size = 12
+
+[node name="PlayerBarTemplate" type="Panel" groups=["team menu player bar"]]
+custom_minimum_size = Vector2(100, 25)
+offset_right = 100.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxmg0")
+script = ExtResource("1_d84sc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_right = 0.96
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-"
+label_settings = SubResource("LabelSettings_34ayu")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.8
+anchor_right = 0.97
+anchor_bottom = 0.88
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true

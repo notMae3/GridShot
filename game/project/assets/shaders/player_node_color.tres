@@ -1,0 +1,76 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://cjekb8ia6rg53"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_pntt1"]
+parameter_name = "ClipPercentage"
+hint = 1
+max = 0.75
+default_value_enabled = true
+default_value = 0.5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pf7as"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_eebnb"]
+output_port_for_preview = 0
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0.5, 0.5)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_7fnia"]
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_yltmr"]
+output_port_for_preview = 0
+function = 4
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float ClipPercentage : hint_range(0.0, 0.75) = 0.5;
+
+
+
+void fragment() {
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// Distance:4
+	vec2 n_in4p1 = vec2(0.50000, 0.50000);
+	float n_out4p0 = distance(n_out3p0, n_in4p1);
+
+
+// FloatParameter:2
+	float n_out2p0 = ClipPercentage;
+
+
+// Compare:6
+	bool n_out6p0 = n_out4p0 < n_out2p0;
+
+
+	float n_out5p0;
+// Switch:5
+	float n_in5p1 = 1.00000;
+	float n_in5p2 = 0.00000;
+	n_out5p0 = mix(n_in5p2, n_in5p1, float(n_out6p0));
+
+
+// Output:0
+	COLOR.a = n_out5p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(880, 20)
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatParameter_pntt1")
+nodes/fragment/2/position = Vector2(140, 360)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_pf7as")
+nodes/fragment/3/position = Vector2(-140, 20)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDistance_eebnb")
+nodes/fragment/4/position = Vector2(220, 20)
+nodes/fragment/5/node = SubResource("VisualShaderNodeSwitch_7fnia")
+nodes/fragment/5/position = Vector2(660, 20)
+nodes/fragment/6/node = SubResource("VisualShaderNodeCompare_yltmr")
+nodes/fragment/6/position = Vector2(440, 20)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 6, 0, 2, 0, 6, 1, 6, 0, 5, 0, 5, 0, 0, 1)

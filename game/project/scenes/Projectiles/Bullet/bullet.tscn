@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://mljqoxl7qok8"]
+
+[ext_resource type="Script" uid="uid://4gnf10p8gi7n" path="res://scenes/Projectiles/Bullet/bullet.gd" id="1_xa155"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tu0b"]
+radius = 1.75
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xa155"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Bullet" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+collision_layer = 0
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_xa155")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, -24, 0)
+width = 3.5
+default_color = Color(1, 1, 1, 0.5)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5tu0b")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xa155")
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifeTimeTimer" to="." method="_on_life_time_timer_timeout"]

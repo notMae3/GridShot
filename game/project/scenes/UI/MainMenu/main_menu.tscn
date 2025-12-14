@@ -1,0 +1,257 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq7li4lfjo0ew"]
+
+[ext_resource type="Script" uid="uid://btaqlnfd4w4rh" path="res://scenes/UI/MainMenu/main_menu.gd" id="1_f6mx3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yj5a8"]
+font_size = 46
+
+[sub_resource type="LabelSettings" id="LabelSettings_sahmk"]
+font_size = 11
+
+[sub_resource type="LabelSettings" id="LabelSettings_c38wu"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwpty"]
+font_size = 14
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6mx3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.116667
+anchor_right = 1.0
+anchor_bottom = 0.316667
+grow_horizontal = 2
+text = "Gridshot"
+label_settings = SubResource("LabelSettings_yj5a8")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MultiplayerLabel" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.704166
+anchor_top = 0.355556
+anchor_right = 0.989583
+anchor_bottom = 0.646296
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "How does multiplayer work?
+
+Gridshot can be played with 2-6 players. The friend with the best computer and network should host a game using the 'Host game' button. The other players joins the lobby host using the 'Join game' button."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="RightsLabel" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -61.0
+offset_right = 310.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "All rights reserved
+Made by - for a school assignment
+(This is partially unfinished because I ran out of time)"
+label_settings = SubResource("LabelSettings_sahmk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.384375
+anchor_top = 0.4
+anchor_right = 0.615625
+anchor_bottom = 0.827778
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="HostButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "Host game"
+
+[node name="JoinButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "Join game"
+
+[node name="QuitButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[node name="Host" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.127778
+anchor_right = 0.65625
+anchor_bottom = 0.872222
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Host"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Host/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "Go back"
+
+[node name="PlayerName" type="VBoxContainer" parent="Host/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Host/VBoxContainer/PlayerName"]
+layout_mode = 2
+text = "What other players will know you as"
+label_settings = SubResource("LabelSettings_c38wu")
+autowrap_mode = 3
+
+[node name="LobbyPlayerNameLineEdit" type="LineEdit" parent="Host/VBoxContainer/PlayerName"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Player name"
+metadata/_edit_use_anchors_ = true
+
+[node name="LobbyName" type="VBoxContainer" parent="Host/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Host/VBoxContainer/LobbyName"]
+layout_mode = 2
+text = "What the lobby should be called"
+label_settings = SubResource("LabelSettings_lwpty")
+autowrap_mode = 3
+
+[node name="LobbyNameLineEdit" type="LineEdit" parent="Host/VBoxContainer/LobbyName"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Lobby name"
+metadata/_edit_use_anchors_ = true
+
+[node name="StartLobbyButton" type="Button" parent="Host/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+text = "Start lobby"
+metadata/_edit_use_anchors_ = true
+
+[node name="Join" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.127778
+anchor_right = 0.65625
+anchor_bottom = 0.872222
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Join"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Join/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "Go back"
+
+[node name="PlayerName" type="VBoxContainer" parent="Join/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Join/VBoxContainer/PlayerName"]
+layout_mode = 2
+text = "What other players will know you as"
+label_settings = SubResource("LabelSettings_c38wu")
+autowrap_mode = 3
+
+[node name="JoinPlayerNameLineEdit" type="LineEdit" parent="Join/VBoxContainer/PlayerName"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Player name"
+metadata/_edit_use_anchors_ = true
+
+[node name="LobbyID" type="VBoxContainer" parent="Join/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Join/VBoxContainer/LobbyID"]
+layout_mode = 2
+text = "The ID of the lobby to join (eg. L1234)"
+label_settings = SubResource("LabelSettings_lwpty")
+autowrap_mode = 3
+
+[node name="LobbyIDLineEdit" type="LineEdit" parent="Join/VBoxContainer/LobbyID"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Lobby ID"
+metadata/_edit_use_anchors_ = true
+
+[node name="JoinLobbyButton" type="Button" parent="Join/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+text = "Join lobby"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Main/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Host/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Host/VBoxContainer/StartLobbyButton" to="." method="_on_start_lobby_button_pressed"]
+[connection signal="pressed" from="Join/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Join/VBoxContainer/JoinLobbyButton" to="." method="_on_join_lobby_button_pressed"]

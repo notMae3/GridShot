@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuu80hbsniat3"]
+
+[ext_resource type="Script" uid="uid://ds4xrtowlar5k" path="res://scenes/TripwirePreview/tripwire_preview.gd" id="1_t6cbi"]
+[ext_resource type="Shader" uid="uid://c6yoild3nryvb" path="res://assets/tripwire_line_shader.tres" id="2_inmlg"]
+[ext_resource type="Shader" uid="uid://ugxclvtd5jyu" path="res://assets/throwable_path_line_preview.tres" id="3_ds8nf"]
+[ext_resource type="Texture2D" uid="uid://bfjs7qloueeb0" path="res://assets/capsule.png" id="3_inmlg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bj2l"]
+shader = ExtResource("2_inmlg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inmlg"]
+shader = ExtResource("3_ds8nf")
+shader_parameter/SpeedFactor = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4bj2l"]
+diffuse_texture = ExtResource("3_inmlg")
+texture_repeat = 2
+
+[node name="TripwirePreview" type="Node2D"]
+script = ExtResource("1_t6cbi")
+
+[node name="TripwireLine" type="Line2D" parent="."]
+z_index = 4
+z_as_relative = false
+material = SubResource("ShaderMaterial_4bj2l")
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 0.63, 0.7, 1)
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TripwireConnector1" type="Line2D" parent="."]
+z_index = 4
+z_as_relative = false
+points = PackedVector2Array(0, -10, 0, 10)
+default_color = Color(0.0402569, 0.434141, 0.516538, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TripwireConnector2" type="Line2D" parent="."]
+visible = false
+z_index = 4
+z_as_relative = false
+points = PackedVector2Array(0, -10, 0, 10)
+default_color = Color(0.0402569, 0.434141, 0.516538, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathLine" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_inmlg")
+points = PackedVector2Array(0, 0, 0, 0)
+texture = SubResource("CanvasTexture_4bj2l")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TripwireLengthRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)

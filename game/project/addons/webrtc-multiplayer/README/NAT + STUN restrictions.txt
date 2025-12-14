@@ -1,0 +1,9 @@
+*stackoverflow answer*
+
+Your code works on LAN without iceServers since STUN servers are not used for gathering host candidates — your computer already knows its local IP address — and host candidates are enough to establish a WebRTC connection on LAN.
+
+The connection may failed since one of the peers were behind a symmetric NAT, over which STUN fails to work. You can check whether the network is behind a symmetric NAT by using the code in this page: Am I behind a Symmetric NAT? [https://jsfiddle.net/5ftsd5c2/17/] (This page also provide a JSFiddle, in which you can check the console message whether it prints "normal nat" or "symmetric nat". If it prints nothing, while the fiddle is working properly, it means you are not getting server reflexive candidates.)
+
+I think you should test your code first on WAN with peers who are checked that they are behind a normal nat. Have you ever tried your code on WAN with both peer connected via Ethernet or WiFi? It seems that 3G/4G networks are often under symmetric NATs.
+
+UPDATE (Thanks to @Sean DuBois for the comment): A "symmetric NAT", an expression I used above and was introduced in RFC 3489 (March 2003), can be better termed by the updated terminology introduced in RFC 4787 (January 2007). STUN only works over a NAT which has an "Endpoint-Independent Mapping" behavior. A "symmetric NAT" (old term) has an "Address-Dependent Mapping" behavior or an "Address and Port-Dependent Mapping" behavior, not an "Endpoint-Independent Mapping" behavior.

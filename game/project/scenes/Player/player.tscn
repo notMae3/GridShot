@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=3 uid="uid://ktbstc3wotu"]
+
+[ext_resource type="Script" uid="uid://77kuxt1qq68i" path="res://scenes/Player/player.gd" id="1_1kbk7"]
+[ext_resource type="Shader" uid="uid://cjekb8ia6rg53" path="res://assets/shaders/player_node_color.tres" id="2_1kbk7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqjuk"]
+shader = ExtResource("2_1kbk7")
+shader_parameter/ClipPercentage = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3r6ug"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Animation_3cqug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionMarker:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(44, -21, 56, 0, 44, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:ads_factor")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kax2m"]
+resource_name = "to ads"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionMarker:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(44, -21, 56, 0, 44, 21), PackedVector2Array(44, -12, 60, 0, 44, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:ads_factor")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bupq3"]
+_data = {
+&"RESET": SubResource("Animation_3cqug"),
+&"to ads": SubResource("Animation_kax2m")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3oy5e"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("DirectionMarker:points")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("DirectionMarker:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:modulate")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+properties/5/path = NodePath(".:team")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath("PlayerColor:color")
+properties/6/spawn = true
+properties/6/replication_mode = 2
+properties/7/path = NodePath(".:hp")
+properties/7/spawn = true
+properties/7/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D" groups=["players"]]
+light_mask = 2
+z_index = 2
+z_as_relative = false
+collision_layer = 2
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_1kbk7")
+metadata/_edit_horizontal_guides_ = [-599.0]
+
+[node name="PlayerColor" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gqjuk")
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3r6ug")
+
+[node name="DirectionMarker" type="Line2D" parent="."]
+z_index = 3
+z_as_relative = false
+points = PackedVector2Array(44, -21, 56, 0, 44, 21)
+width = 5.6
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bupq3")
+}
+autoplay = "RESET"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3oy5e")
+
+[node name="PlayerRepulsionArea2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRepulsionArea2D"]
+shape = SubResource("CircleShape2D_3r6ug")
+
+[node name="WeaponFireCooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="ThrowablePreviewRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)

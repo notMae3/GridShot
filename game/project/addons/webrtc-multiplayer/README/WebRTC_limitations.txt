@@ -1,0 +1,69 @@
+WebRTC is limited by 3 main factors.
+
+Connection count:
+	Browsers often have limits on connection count in order to preserve performance.
+	Eg. chromium: 500, chrome: 256, firefox: unlimited
+	Because of browser restrictions, and also the performance impact of hundreds of WebRTC connections,
+	  the lobby size is limited.
+
+Network restrictions:
+	Strict NATs, like on phone browsers, would require the WebRTC connection to use a TURN server.
+	TURN servers are proxies that allows for "peer to peer" communitaction. This wouldn't actually
+	  be p2p since the TURN server, unlike a STUN or signaling server, is constantly used throughout the game session.
+
+	This plugin uses a STUN server but no TURN server.
+	Player client:
+		When a player client starts connecting to a lobby host using this plugin a timer, `WebRTCConnectionTimer`,
+		  is started.
+		Once the connection is successfully established this timer is stoped.
+		If the timer finishes a FatalError is thrown because one of the following errors has happened:
+		  1. Either this player's or the lobby host's network speeds are too slow.
+		  2. This player's network configuration is too strict, thereby preventing WebRTC connections.
+		  3. The lobby's network configuration is too strict, thereby preventing WebRTC connections.
+		       If this is the case both the player client and the lobby host just sees that the WebRTC connection failed.
+		       Neither the player client or lobby host knows who was the problem. This is a difficult issue to fix.
+	Lobby host:
+		When a player client starts connecting to this lobby host using this plugin a timer, `WebRTCConnectionTimer`,
+		  is started.
+		Once the connection is successfully established this timer is stoped.
+		If the connecting player's network configuration is too strict, thereby preventing WebRTC connections, the
+		  Peer object is removed before the timer finishes.
+		If the timer finishes a FatalError is thrown because one of the following errors has happened:
+		  1. Either this lobby host's or the player's network speeds are too slow.
+		  2. This lobby's network configuration is too strict, thereby preventing WebRTC connections.
+		       If this is the case both the player client and the lobby host just sees that the WebRTC connection failed.
+		       Neither the player client or lobby host knows who was the problem. This is a difficult issue to fix.
+
+Security concerns:
+	Because of WebRTC's peer to peer communication every player's IP address is exposed to the lobby host's computer.
+	Normally the human behind the lobby host can't see these IP addresses.
+	That said someone with knowledge about how networking and computers work would easily be able get them, which
+	  would be a privacy concern.
+	Therefore WebRTC multiplayer isn't well suited for multiplayer with strangers.
+	
+
+NOTE:
+	During testing my installation of OperaGX caused an error where Godot's AudioWorklet module couldn't load.
+	Other browsers and installations of OperaGX didn't cause the same error.
+	This broken installation also prevented WebRTC connections.
+	It's unclear if the audio error caused the WebRTC to fail or if it was another effect of the broken installation.
+	When attempting to connect to a lobby host running on this broken installation from a player client running
+	  on firefox the firefox web console threw an error saying a TURN server was required.
+	All this to say that sometimes the browser appears to be the issue. Maybe it's the browser's network or audio
+	  permissions, or maybe it's just plain broken. Either way it's not necessarily the player's NAT causing WebRTC to fail.
+
+NOTE:
+	WebRTC connections are quite fragile.
+	Any minor network lag or either party's computer freezing for a second would cause a disconnect.
+	Reasons for WebRTC connection failure:
+		- Browser doesn't support it
+		- Browser installation is broken
+		- The network configuration of the host of a lobby you're tying to join is too strict
+		- A player's network configuration is too strict
+		- Either party's network speeds are too slow
+		- Either party's network connection is too unstable
+	Testing has shown a VPN can in some cases enable WebRTC connections on networks where they normally wouldn't be allowed.
+
+NOTE:
+	Testing has also shown that the "TURN server required" error can be decently inconsistent.
+	Hence i am made to believe WebRTC multiplayer might suck ass.

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhhsiert5ak7n"]
+
+[ext_resource type="Script" uid="uid://i2c5buh7oncb" path="res://scenes/Projectiles/SmokeGrenade/smoke_grenade.gd" id="1_g1prg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5b8b"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nyd8r"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="SmokeGrenade" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_g1prg")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, -0.005, 0)
+width = 20.0
+default_color = Color(0.33, 0.33, 0.33, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_e5b8b")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nyd8r")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

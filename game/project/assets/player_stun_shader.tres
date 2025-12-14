@@ -1,0 +1,41 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://ch36saadcq55d"]
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_3wtdk"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.299, 0.587, 0.114)]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_byfuu"]
+source = 1
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D screen_tex_frg_9 : hint_screen_texture;
+
+
+
+void fragment() {
+	vec4 n_out9p0;
+// Texture2D:9
+	n_out9p0 = texture(screen_tex_frg_9, SCREEN_UV);
+
+
+// DotProduct:11
+	vec3 n_in11p1 = vec3(0.29900, 0.58700, 0.11400);
+	float n_out11p0 = dot(vec3(n_out9p0.xyz), n_in11p1);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out11p0);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(800, 380)
+nodes/fragment/9/node = SubResource("VisualShaderNodeTexture_byfuu")
+nodes/fragment/9/position = Vector2(280, 380)
+nodes/fragment/11/node = SubResource("VisualShaderNodeDotProduct_3wtdk")
+nodes/fragment/11/position = Vector2(560, 380)
+nodes/fragment/connections = PackedInt32Array(9, 0, 11, 0, 11, 0, 0, 0)

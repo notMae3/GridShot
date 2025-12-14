@@ -1,0 +1,268 @@
+[gd_scene load_steps=12 format=3 uid="uid://dduyn44xmi0qe"]
+
+[ext_resource type="Texture2D" uid="uid://d3ajdrn2fnqar" path="res://assets/tilesets/weapon_silhouettes.png" id="1_7tc4a"]
+[ext_resource type="Script" uid="uid://gean1lihpx21" path="res://scenes/UI/ShopMenu/shop_menu.gd" id="1_waq6n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tc4a"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_waq6n"]
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si8sq"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(0, 0, 128, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waq6n"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(128, 0, 128, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehpkg"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(256, 0, 128, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tc4a"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(384, 0, 128, 0)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmub2"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(512, 0, 128, 0)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m77in"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(640, 0, 128, 0)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01fhu"]
+atlas = ExtResource("1_7tc4a")
+region = Rect2(768, 0, 128, 0)
+filter_clip = true
+
+[node name="ShopMenu" type="Control"]
+z_index = 11
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_waq6n")
+
+[node name="StartGameTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="WhatToDoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.322917
+anchor_right = 0.677083
+anchor_bottom = 0.0759259
+grow_horizontal = 2
+text = "Click on the gun and util you want"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StartTimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.379167
+anchor_top = 0.894444
+anchor_right = 0.621875
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Starting in 20s"
+label_settings = SubResource("LabelSettings_7tc4a")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Gun" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gun"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.160417
+anchor_top = 0.062963
+anchor_right = 0.841667
+anchor_bottom = 0.937037
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 25
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Gun/VBoxContainer"]
+layout_mode = 2
+text = "Choose gun"
+label_settings = SubResource("LabelSettings_waq6n")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gun/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AssaultRifle" type="Button" parent="Gun/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Assault rifle"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_si8sq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SubMachineGun" type="Button" parent="Gun/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Submachine gun"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_waq6n")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Shotgun" type="Button" parent="Gun/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Shotgun"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_ehpkg")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CountLabel" type="Label" parent="Gun/VBoxContainer"]
+layout_mode = 2
+text = "0/1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Util" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Util"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.160417
+anchor_top = 0.062963
+anchor_right = 0.841667
+anchor_bottom = 0.937037
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 25
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Util/VBoxContainer"]
+layout_mode = 2
+text = "Choose util"
+label_settings = SubResource("LabelSettings_waq6n")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="Util/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+columns = 2
+
+[node name="Molotov" type="Button" parent="Util/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Molotov"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_7tc4a")
+icon_alignment = 1
+expand_icon = true
+
+[node name="FlashGrenade" type="Button" parent="Util/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Flash grenade"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_xmub2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SmokeGrenade" type="Button" parent="Util/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Smoke grenade"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_m77in")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tripwire" type="Button" parent="Util/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Tripwire"
+focus_mode = 0
+toggle_mode = true
+icon = SubResource("AtlasTexture_01fhu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CountLabel" type="Label" parent="Util/VBoxContainer"]
+layout_mode = 2
+text = "0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="StartGameTimer" to="." method="_on_start_game_timer_timeout"]
+[connection signal="pressed" from="Gun/VBoxContainer/VBoxContainer/AssaultRifle" to="." method="_on_gun_button_pressed" binds= [0]]
+[connection signal="pressed" from="Gun/VBoxContainer/VBoxContainer/SubMachineGun" to="." method="_on_gun_button_pressed" binds= [1]]
+[connection signal="pressed" from="Gun/VBoxContainer/VBoxContainer/Shotgun" to="." method="_on_gun_button_pressed" binds= [2]]
+[connection signal="pressed" from="Util/VBoxContainer/GridContainer/Molotov" to="." method="_on_util_button_pressed" binds= [3]]
+[connection signal="pressed" from="Util/VBoxContainer/GridContainer/FlashGrenade" to="." method="_on_util_button_pressed" binds= [4]]
+[connection signal="pressed" from="Util/VBoxContainer/GridContainer/SmokeGrenade" to="." method="_on_util_button_pressed" binds= [5]]
+[connection signal="pressed" from="Util/VBoxContainer/GridContainer/Tripwire" to="." method="_on_util_button_pressed" binds= [6]]

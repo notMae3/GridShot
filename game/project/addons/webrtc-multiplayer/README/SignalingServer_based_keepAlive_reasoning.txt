@@ -1,0 +1,17 @@
+The keepAlive packets that stops the websocket connections to the signaling/matchmaking
+  server from closing are sent by the signaling server.
+This is because of browser throttling.
+If the player minimizes their browser or switches tab while the game is running the
+  tab will be throttled. (Probably. This is likely browser and setting dependent)
+The tab being throttled means the game loop only runs somewhere between once every
+  few seconds to onces every few minutes.
+If the player client or lobby host was responsible for sending keepAlive packets these
+  would stop right away, thus killing the websocket connection if the player doesn't
+  return within a minute.
+Therefore the signaling server sends keepAlive packets.
+Packets sent to a throttled game instance are kept in a queue until the next frame.
+This queue has room for 4096 packets which would consume roughly 1MB ram if full.
+  That's (overestimatingly assuming 120 bits overhead + 160 bits packet) * 4096 packets
+Assuming a keepAlive packet is sent every 45 seconds the game instance won't
+  disconnect from the signaling server for roughly 50 hours.
+  That's (45s/packet) / 60s/min = 0.75min/packet, (0.75min/packet * 4096packets) / 60min/h = 51.2h

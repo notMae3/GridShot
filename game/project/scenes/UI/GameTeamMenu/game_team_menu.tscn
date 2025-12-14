@@ -1,0 +1,330 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqee01q06x3hf"]
+
+[ext_resource type="Script" uid="uid://686dx0pj0ng4" path="res://scenes/UI/GameTeamMenu/game_team_menu.gd" id="1_34ayu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxmg0"]
+font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tteaa"]
+bg_color = Color(0.22, 0.22, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 7.0
+expand_margin_top = 2.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_34ayu"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_6c5pn"]
+font_size = 10
+
+[node name="GameTeamMenu" type="Control"]
+z_index = 11
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34ayu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="LobbyHeader" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.17037
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LobbyNameLabel" type="Label" parent="LobbyHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lobby name"
+label_settings = SubResource("LabelSettings_nxmg0")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SeparatorLabel" type="Label" parent="LobbyHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.17
+text = "-"
+label_settings = SubResource("LabelSettings_nxmg0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LobbyIDLabel" type="Label" parent="LobbyHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lobby id"
+label_settings = SubResource("LabelSettings_nxmg0")
+vertical_alignment = 1
+
+[node name="Players" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Players"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Unsorted" type="Control" parent="Players/HBoxContainer"]
+custom_minimum_size = Vector2(310, 83)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="Players/HBoxContainer/Unsorted"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tteaa")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Players/HBoxContainer/Unsorted"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0753425
+anchor_right = 0.924658
+anchor_bottom = 0.943182
+grow_horizontal = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+alignment = 1
+last_wrap_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Players/HBoxContainer/Unsorted/HFlowContainer"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Unsorted players"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Teams" type="HBoxContainer" parent="Players/HBoxContainer"]
+custom_minimum_size = Vector2(0, 79)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Team0" type="Control" parent="Players/HBoxContainer/Teams"]
+custom_minimum_size = Vector2(160, 109)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Players/HBoxContainer/Teams/Team0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tteaa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Players/HBoxContainer/Teams/Team0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Players/HBoxContainer/Teams/Team0/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Players/HBoxContainer/Teams/Team0/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "Attackers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoinButton" type="Button" parent="Players/HBoxContainer/Teams/Team0/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 12
+text = "Join"
+flat = true
+
+[node name="Team1" type="Control" parent="Players/HBoxContainer/Teams"]
+custom_minimum_size = Vector2(160, 109)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Players/HBoxContainer/Teams/Team1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tteaa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Players/HBoxContainer/Teams/Team1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Players/HBoxContainer/Teams/Team1/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Players/HBoxContainer/Teams/Team1/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "Defenders"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoinButton" type="Button" parent="Players/HBoxContainer/Teams/Team1/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 12
+text = "Join"
+flat = true
+
+[node name="WaitingForLobbyHost" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WaitingForLobbyHost"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="WaitingForLobbyHost/VBoxContainer"]
+layout_mode = 2
+text = "Waiting for lobby host
+to start the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="WaitingForLobbyHost/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Exit lobby"
+
+[node name="LobbyHostControls" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LobbyHostControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StartButton" type="Button" parent="LobbyHostControls/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Start game"
+
+[node name="TeamPlayerLabel" type="Label" parent="LobbyHostControls/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.025
+anchor_top = -0.116667
+anchor_right = 1.66
+anchor_bottom = 1.11667
+grow_horizontal = 2
+grow_vertical = 2
+text = "Each team must have at least 1 player"
+label_settings = SubResource("LabelSettings_34ayu")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="LobbyHostControls/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Exit lobby"
+
+[node name="HowToPlayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03125
+anchor_top = 0.740741
+anchor_right = 0.46875
+anchor_bottom = 0.981481
+grow_horizontal = 0
+grow_vertical = 0
+text = "How to play
+
+Gridshot gameplay consists of 2 team of 1-3 players each. The attackers spawn at the top of the map and their objective is to reach a bomb site to plant the bomb and protect it until it explodes. The defenders spawn at the bottom of the map and their objective is to defuse their opponents' bomb. Either team can win by eliminating all players on the opposing team."
+label_settings = SubResource("LabelSettings_6c5pn")
+horizontal_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ControlsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53125
+anchor_top = 0.740741
+anchor_right = 0.96875
+anchor_bottom = 0.981481
+grow_horizontal = 0
+grow_vertical = 0
+text = "Controls
+
+Move around using W/A/S/D. Rotate using ARROW LEFT and ARROW RIGHT. Scope in using ARROW UP and fire using SPACE. Switch held weapon/utility using buttons 1, 2, 3, 4. Reload using R. Plant or defuse the bomb using button E."
+label_settings = SubResource("LabelSettings_6c5pn")
+horizontal_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Players/HBoxContainer/Teams/Team0/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_team_join_button_pressed" binds= [0]]
+[connection signal="pressed" from="Players/HBoxContainer/Teams/Team1/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_team_join_button_pressed" binds= [1]]
+[connection signal="pressed" from="WaitingForLobbyHost/VBoxContainer/ExitButton" to="." method="_on_exit_lobby_button_pressed"]
+[connection signal="pressed" from="LobbyHostControls/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="LobbyHostControls/VBoxContainer/ExitButton" to="." method="_on_exit_lobby_button_pressed"]

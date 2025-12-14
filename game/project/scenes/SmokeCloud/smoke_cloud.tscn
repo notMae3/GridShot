@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhhjqpfbux20j"]
+
+[ext_resource type="Script" uid="uid://oyx65pywahgv" path="res://scenes/SmokeCloud/smoke_cloud.gd" id="1_mcgr6"]
+
+[sub_resource type="Gradient" id="Gradient_68mqg"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.558011, 0.674033)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mcgr6"]
+gradient = SubResource("Gradient_68mqg")
+width = 1200
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mcgr6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:seed")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:emitting")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="SmokeCloud" type="CPUParticles2D"]
+z_index = 5
+z_as_relative = false
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_mcgr6")
+lifetime = 8.0
+one_shot = true
+explosiveness = 1.0
+use_fixed_seed = true
+seed = 2175897107
+lifetime_randomness = 0.2
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
+linear_accel_min = -56.0
+linear_accel_max = -56.0
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+color = Color(0.8, 0.8, 0.8, 1)
+script = ExtResource("1_mcgr6")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_mcgr6")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

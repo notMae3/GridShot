@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjouh2hqulwsr"]
+
+[ext_resource type="Script" uid="uid://dggld5y5oijng" path="res://scenes/PlayerCamera/player_camera.gd" id="1_oa51k"]
+[ext_resource type="PackedScene" uid="uid://cuxeyj2wrs5rp" path="res://scenes/UI/PlayerUI/player_ui.tscn" id="2_otbs8"]
+[ext_resource type="PackedScene" uid="uid://bqee01q06x3hf" path="res://scenes/UI/GameTeamMenu/game_team_menu.tscn" id="3_m5kww"]
+[ext_resource type="PackedScene" uid="uid://cs2v1o6nuwp0v" path="res://scenes/UI/LoadingScreen/loading_screen.tscn" id="4_vrnj8"]
+[ext_resource type="PackedScene" uid="uid://dd11jn2sqev07" path="res://scenes/UI/GameOverScreen/game_over_screen.tscn" id="5_bcuss"]
+[ext_resource type="PackedScene" uid="uid://dduyn44xmi0qe" path="res://scenes/UI/ShopMenu/shop_menu.tscn" id="6_k1ma5"]
+
+[node name="PlayerCamera" type="Camera2D"]
+script = ExtResource("1_oa51k")
+
+[node name="PlayerUI" parent="." instance=ExtResource("2_otbs8")]
+visible = false
+
+[node name="GameTeamMenu" parent="." instance=ExtResource("3_m5kww")]
+visible = false
+
+[node name="LoadingScreen" parent="." instance=ExtResource("4_vrnj8")]
+visible = false
+
+[node name="GameOverScreen" parent="." instance=ExtResource("5_bcuss")]
+visible = false
+
+[node name="ShopMenu" parent="." instance=ExtResource("6_k1ma5")]
+visible = false

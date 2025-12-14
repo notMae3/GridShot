@@ -1,0 +1,645 @@
+[gd_scene load_steps=23 format=3 uid="uid://cuxeyj2wrs5rp"]
+
+[ext_resource type="Shader" uid="uid://cddgsq6y7hpc2" path="res://assets/shaders/PlayerUI/lobby_bar_portrait.tres" id="1_4flor"]
+[ext_resource type="Shader" uid="uid://d23k80r3kkfoi" path="res://assets/shaders/PlayerUI/lobby_bar_center_triangle.tres" id="1_f1p5l"]
+[ext_resource type="Script" uid="uid://2tcddyyl8ixb" path="res://scenes/UI/PlayerUI/player_ui.gd" id="1_wu1y1"]
+[ext_resource type="LabelSettings" uid="uid://w061top4c5p2" path="res://assets/player_ui_weapon_label_settings.tres" id="4_it1h5"]
+[ext_resource type="Texture2D" uid="uid://d3ajdrn2fnqar" path="res://assets/tilesets/weapon_silhouettes.png" id="4_lqeuo"]
+[ext_resource type="LabelSettings" uid="uid://b08humhnay0f1" path="res://assets/player_ui_utils_label_settings.tres" id="6_2ine3"]
+[ext_resource type="Shader" uid="uid://rhvlqdw0ysyo" path="res://assets/shaders/PlayerUI/lobby_bar_healthbar.tres" id="7_bq01o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu1y1"]
+shader = ExtResource("1_4flor")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = false
+shader_parameter/RightEnabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4flor"]
+shader = ExtResource("1_f1p5l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqeuo"]
+shader = ExtResource("1_4flor")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = true
+shader_parameter/RightEnabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq01o"]
+shader = ExtResource("1_4flor")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = true
+shader_parameter/RightEnabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp7cc"]
+bg_color = Color(0.46, 0.46, 0.46, 0.658824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwnbr"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.152941, 0.152941, 0.152941, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_it1h5"]
+shader = ExtResource("1_4flor")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = false
+shader_parameter/RightEnabled = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqeuo"]
+atlas = ExtResource("4_lqeuo")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqeuo"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ine3"]
+atlas = ExtResource("4_lqeuo")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq01o"]
+atlas = ExtResource("4_lqeuo")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg04y"]
+atlas = ExtResource("4_lqeuo")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xolw"]
+atlas = ExtResource("4_lqeuo")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ine3"]
+shader = ExtResource("1_4flor")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = true
+shader_parameter/RightEnabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg04y"]
+shader = ExtResource("7_bq01o")
+shader_parameter/LeftEnabled = true
+shader_parameter/Mirror = true
+shader_parameter/RightEnabled = true
+shader_parameter/DisplayPercent = 1.0
+
+[node name="PlayerUI" type="Control"]
+z_index = 11
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu1y1")
+
+[node name="LobbyBar" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.32
+anchor_right = 0.68
+anchor_bottom = 0.0444444
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="L3" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 0
+anchor_right = 0.184874
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/L3"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="L2" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 0
+anchor_left = 0.151261
+anchor_right = 0.336134
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/L2"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="L1" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 0
+anchor_left = 0.302521
+anchor_right = 0.487395
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/L1"]
+material = SubResource("ShaderMaterial_wu1y1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterTriangle" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_4flor")
+layout_mode = 0
+anchor_left = 0.453782
+anchor_right = 0.546219
+anchor_bottom = 1.0
+offset_right = -1.52588e-05
+color = Color(0.28, 0.28, 0.28, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="LobbyBar/CenterTriangle"]
+
+[node name="R1" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_lqeuo")
+layout_mode = 0
+anchor_left = 0.512605
+anchor_right = 0.697479
+anchor_bottom = 1.0
+offset_left = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/R1"]
+material = SubResource("ShaderMaterial_bq01o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="R2" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_lqeuo")
+layout_mode = 0
+anchor_left = 0.663866
+anchor_right = 0.84874
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/R2"]
+material = SubResource("ShaderMaterial_bq01o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="R3" type="ColorRect" parent="LobbyBar"]
+material = SubResource("ShaderMaterial_lqeuo")
+layout_mode = 0
+anchor_left = 0.815126
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="LobbyBar/R3"]
+material = SubResource("ShaderMaterial_bq01o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = -1.89246
+offset_bottom = -0.999977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameBombInteractionBar" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.30625
+anchor_top = 0.133333
+anchor_right = 0.69375
+anchor_bottom = 0.214815
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="GameBombInteractionBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cp7cc")
+
+[node name="Label" type="Label" parent="GameBombInteractionBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press and hold button E to plant the bomb"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressContainer" type="Panel" parent="GameBombInteractionBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.142473
+anchor_top = 0.795455
+anchor_right = 0.857527
+anchor_bottom = 0.886364
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwnbr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Progressbar" type="ColorRect" parent="GameBombInteractionBar/ProgressContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.138667, 0.52, 0, 1)
+
+[node name="Weapons" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.73125
+anchor_top = 0.618519
+anchor_right = 1.0
+anchor_bottom = 0.787037
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="ColorRect" parent="Weapons"]
+material = SubResource("ShaderMaterial_it1h5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Weapon" type="Control" parent="Weapons"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Ammo" type="Control" parent="Weapons/Weapon"]
+layout_mode = 1
+anchor_left = 0.116279
+anchor_top = 0.197802
+anchor_right = 0.410853
+anchor_bottom = 0.813187
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentAmmo" type="Label" parent="Weapons/Weapon/Ammo"]
+layout_mode = 2
+anchor_left = 0.0263158
+anchor_top = -0.142857
+anchor_right = 0.407895
+anchor_bottom = 1.10714
+text = "24"
+label_settings = ExtResource("4_it1h5")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoDividerLine" type="ColorRect" parent="Weapons/Weapon/Ammo"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+anchor_left = 0.486842
+anchor_right = 0.513158
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="StoredAmmo" type="Label" parent="Weapons/Weapon/Ammo"]
+layout_mode = 2
+anchor_left = 0.592105
+anchor_top = -0.142857
+anchor_right = 0.973684
+anchor_bottom = 1.10714
+text = "48"
+label_settings = ExtResource("4_it1h5")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ImageContainer" type="Control" parent="Weapons/Weapon"]
+layout_mode = 1
+anchor_left = 0.366
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="WeaponTexture" type="TextureRect" parent="Weapons/Weapon/ImageContainer"]
+self_modulate = Color(0.26, 0.26, 0.26, 1)
+custom_minimum_size = Vector2(114, 46)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.525762
+anchor_top = -0.521739
+anchor_right = 1.53684
+anchor_bottom = 1.53043
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+texture = SubResource("AtlasTexture_lqeuo")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="DividerLine" type="Panel" parent="Weapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.168182
+anchor_top = 0.490385
+anchor_right = 0.959091
+anchor_bottom = 0.509615
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lqeuo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Utils" type="Control" parent="Weapons"]
+layout_mode = 1
+anchor_left = 0.251938
+anchor_top = 0.538462
+anchor_right = 1.00388
+anchor_bottom = 1.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Molotov" type="Control" parent="Weapons/Utils"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 1
+anchor_right = 0.25
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ImageContainer" type="Control" parent="Weapons/Utils/Molotov"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/Utils/Molotov/ImageContainer"]
+self_modulate = Color(0.258824, 0.258824, 0.258824, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.4
+anchor_top = -0.269231
+anchor_right = 1.4
+anchor_bottom = 0.942308
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_2ine3")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Weapons/Utils/Molotov"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.539835
+anchor_right = 0.999231
+anchor_bottom = 1.04533
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("6_2ine3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FlashGrenade" type="Control" parent="Weapons/Utils"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 1
+anchor_left = 0.25
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="ImageContainer" type="Control" parent="Weapons/Utils/FlashGrenade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/Utils/FlashGrenade/ImageContainer"]
+self_modulate = Color(0.258824, 0.258824, 0.258824, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.4
+anchor_top = -0.269231
+anchor_right = 1.4
+anchor_bottom = 0.942308
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_bq01o")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Weapons/Utils/FlashGrenade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.539835
+anchor_right = 0.999231
+anchor_bottom = 1.04533
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("6_2ine3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SmokeGrenade" type="Control" parent="Weapons/Utils"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 1.0
+
+[node name="ImageContainer" type="Control" parent="Weapons/Utils/SmokeGrenade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/Utils/SmokeGrenade/ImageContainer"]
+self_modulate = Color(0.258824, 0.258824, 0.258824, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.4
+anchor_top = -0.269231
+anchor_right = 1.4
+anchor_bottom = 0.942308
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dg04y")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Weapons/Utils/SmokeGrenade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.539835
+anchor_right = 0.999231
+anchor_bottom = 1.04533
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("6_2ine3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Tripwire" type="Control" parent="Weapons/Utils"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ImageContainer" type="Control" parent="Weapons/Utils/Tripwire"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/Utils/Tripwire/ImageContainer"]
+self_modulate = Color(0.258824, 0.258824, 0.258824, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.4
+anchor_top = -0.269231
+anchor_right = 1.4
+anchor_bottom = 0.942308
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_6xolw")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Weapons/Utils/Tripwire"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.539835
+anchor_right = 0.999231
+anchor_bottom = 1.04533
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("6_2ine3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.838889
+anchor_right = 0.241667
+anchor_bottom = 0.911111
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="WhiteBg" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_2ine3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GrayBg" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_2ine3")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0240385
+anchor_top = 0.025641
+anchor_right = 0.971154
+anchor_bottom = 0.974359
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31, 0.31, 0.31, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Red" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_dg04y")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0528846
+anchor_top = 0.0512821
+anchor_right = 0.951923
+anchor_bottom = 0.948718
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="LobbyBar/CenterTriangle/Timer" to="." method="_on_center_triangle_tick_timer_timeout"]

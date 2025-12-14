@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd11jn2sqev07"]
+
+[ext_resource type="Script" uid="uid://egb73rt3wht5" path="res://scenes/UI/GameOverScreen/game_over_screen.gd" id="1_ijpka"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ijpka"]
+font_size = 42
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijpka"]
+bg_color = Color(0.258824, 0.258824, 0.258824, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_8k4r5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ijpka"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vp0wt"]
+_data = {
+&"RESET": SubResource("Animation_8k4r5"),
+&"fade": SubResource("Animation_ijpka")
+}
+
+[node name="GameOverScreen" type="Control"]
+modulate = Color(1, 1, 1, 0)
+z_index = 11
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ijpka")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.647059)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0925926
+anchor_right = 1.0
+anchor_bottom = 0.2
+grow_horizontal = 2
+text = "Game won"
+label_settings = SubResource("LabelSettings_ijpka")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254167
+anchor_top = 0.794444
+anchor_right = 0.745833
+anchor_bottom = 0.901852
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="ExitButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Exit lobby"
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ExitButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ijpka")
+
+[node name="BackToLobbyButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Return to lobby"
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/BackToLobbyButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ijpka")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vp0wt")
+}
+
+[connection signal="pressed" from="HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]

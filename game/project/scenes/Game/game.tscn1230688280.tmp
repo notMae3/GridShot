@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbxroqrwn3mgo"]
+
+[ext_resource type="Script" uid="uid://cst0ton708ne1" path="res://scenes/Game/game.gd" id="1_611l7"]
+[ext_resource type="PackedScene" uid="uid://cjouh2hqulwsr" path="res://scenes/PlayerCamera/player_camera.tscn" id="2_fc1p2"]
+[ext_resource type="PackedScene" uid="uid://d367qor2xap" path="res://scenes/Map/map.tscn" id="2_y6smp"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_611l7")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://ktbstc3wotu", "uid://dhhjqpfbux20j", "uid://mljqoxl7qok8", "uid://cx303txuq3jru", "uid://dmfiid7o25o2s", "uid://dhhsiert5ak7n", "uid://c8riu6sasiuu7")
+spawn_path = NodePath("..")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("2_fc1p2")]
+
+[node name="Map" parent="." instance=ExtResource("2_y6smp")]
