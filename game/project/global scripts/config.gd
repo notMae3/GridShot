@@ -1,6 +1,6 @@
 extends Node
 
-const credit_name = "Theodor Wallinder" # easily changable for wether i wanna doxx myself depending on the publication platform
+const credit_name = "notMae3" # easily changable for wether i wanna doxx myself depending on the publication platform
 
 class debug:
 	const multiplayer_enabled = true
@@ -8,7 +8,7 @@ class debug:
 	const print_network_logs = false
 
 class network:
-	const signaling_server_url = "wss://theodor-test-ced3867bc168.herokuapp.com/"
+	const signaling_server_url = ""
 	const lobby_size = 6
 
 class game_bomb:
